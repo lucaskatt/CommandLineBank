@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace CommandLineBank
 {
-    class User
+	class User
     {
 		/// <summary>
 		/// First name of the user

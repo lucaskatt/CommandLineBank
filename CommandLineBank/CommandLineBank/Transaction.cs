@@ -2,7 +2,7 @@
 
 namespace CommandLineBank
 {
-    class Transaction 
+	class Transaction 
     {
 		/// <summary>
 		/// Description of the transaction

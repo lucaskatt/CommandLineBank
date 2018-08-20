@@ -14,16 +14,26 @@ namespace CommandLineBank
 			Withdraw
 		}
 
+		/// <summary>
+		/// Start banking
+		/// </summary>
 		public void Start()
 		{
 			_bank = new Bank("Command Line Bank");
 			DisplayStartup();
 		}
 
+		/// <summary>
+		/// Display the bank startup screen
+		/// </summary>
 		private void DisplayStartup()
 		{
 			DisplayStartup(false);
 		}
+		/// <summary>
+		/// Display the bank startup screen
+		/// </summary>
+		/// <param name="previouslyInvalid">whether the user previously encountered an error on this screen</param>
 		private void DisplayStartup(bool previouslyInvalid)
 		{
 			Console.Clear();
@@ -61,10 +71,17 @@ namespace CommandLineBank
 			}
 		}
 
+		/// <summary>
+		/// Display the account creation screen
+		/// </summary>
 		private void DisplayCreateAccount()
 		{
 			DisplayCreateAccount(false);
 		}
+		/// <summary>
+		/// Display the account creation screen
+		/// </summary>
+		/// <param name="previouslyInvalid">whether the user previously encountered an error on this screen</param>
 		private void DisplayCreateAccount(bool previouslyInvalid)
 		{
 			string line = "";
@@ -156,10 +173,17 @@ namespace CommandLineBank
 			DisplayLogin();
 		}
 
+		/// <summary>
+		/// Display the login screen
+		/// </summary>
 		private void DisplayLogin()
 		{
 			DisplayLogin(false);
 		}
+		/// <summary>
+		/// Display the login screen
+		/// </summary>
+		/// <param name="previouslyInvalid">whether the user previously encountered an error on this screen</param>
 		private void DisplayLogin(bool previouslyInvalid)
 		{
 			string username;
@@ -208,10 +232,19 @@ namespace CommandLineBank
 
 		}
 
+		/// <summary>
+		/// Display the user's account
+		/// </summary>
+		/// <param name="user">logged in user</param>
 		private void DisplayAccount(User user)
 		{
 			DisplayAccount(user, false);
 		}
+		/// <summary>
+		/// Display the user's account
+		/// </summary>
+		/// <param name="user">logged in user</param>
+		/// <param name="previouslyInvalid">whether the user previously encountered an error on this screen</param>
 		private void DisplayAccount(User user, bool previouslyInvalid)
 		{
 			Console.Clear();
@@ -253,14 +286,27 @@ namespace CommandLineBank
 			}
 		}
 
+		/// <summary>
+		/// Display the prompt for making a withdrawal
+		/// </summary>
+		/// <param name="user">logged in user</param>
 		private void DisplayWithdraw(User user)
 		{
 			DisplayAction(user, Action.Withdraw);
 		}	
+		/// <summary>
+		/// Display the prompt for making a deposit
+		/// </summary>
+		/// <param name="user">logged in user</param>
 		private void DisplayDeposit(User user)
 		{
 			DisplayAction(user, Action.Deposit);
 		}
+		/// <summary>
+		/// Display the prompt for withdrawing or depositing
+		/// </summary>
+		/// <param name="user">logged in user</param>
+		/// <param name="action">action to take</param>
 		private void DisplayAction(User user, Action action)
 		{
 			string line = "";
@@ -309,6 +355,10 @@ namespace CommandLineBank
 			DisplayAccount(user);
 		}
 
+		/// <summary>
+		/// Display a list of transactions the user has taken
+		/// </summary>
+		/// <param name="user">logged in user</param>
 		private void DisplayTransactions(User user)
 		{
 			Console.Clear();
@@ -335,6 +385,10 @@ namespace CommandLineBank
 			DisplayAccount(user);
 		}
 
+		/// <summary>
+		/// Read a password from the console
+		/// </summary>
+		/// <returns>password</returns>
 		private string ReadPassword()
 		{
 			//since this is a banking application used by many types of users, we are going to echo back "*" for each character typed
@@ -347,7 +401,7 @@ namespace CommandLineBank
 			do
 			{
 				cki = Console.ReadKey(true);
-				if (cki.Key != ConsoleKey.Backspace && cki.Key != ConsoleKey.Enter)
+				if (cki.Key != ConsoleKey.Backspace && cki.Key != ConsoleKey.Enter && cki.Key != ConsoleKey.Escape)
 				{
 					builder.Append(cki.KeyChar);
 					Console.Write("*"); //print out asterix for each character added
@@ -387,6 +441,5 @@ namespace CommandLineBank
 			}
 			return line;
 		}
-
     }
 }
